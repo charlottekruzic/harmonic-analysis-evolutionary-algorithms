@@ -6,13 +6,14 @@ $ cmake .
 $ cmake --build .
 $ ./projet
 
+
 ATTENTION : Supprimer l'ensemble des fichiers généré à la compilation avant de recompiler SAUF .ez
 */
 
 
 \User declarations :
 
-struct Sinus {
+/*struct Sinus {
     double frequence;
     double amplitude;
     double phase;
@@ -29,16 +30,17 @@ struct Sinus {
     }
 };
 
+
 Sinus sum_sinus[100];
 
 float amplitudes[100] = {601, 599, 593, 587, 577, 571, 569, 563, 557, 547, 541, 523, 521, 509, 503, 499, 491, 487, 479, 467, 463, 461, 457, 449, 443, 439, 433, 431, 421, 419, 409, 401, 397, 389, 383, 379, 373, 367, 359, 353, 349, 347, 337, 331, 317, 313, 311, 307, 293, 283, 281, 277, 271, 269, 263, 257, 251, 241, 239, 233, 229, 227, 223, 211, 199, 197, 193, 191, 181, 179, 173, 167, 163, 157, 151, 149, 139, 137, 131, 127, 113, 109, 107, 103, 101, 97, 89, 83, 79, 73, 71, 67, 61, 59, 53, 47, 43, 41, 37, 31};
 float frequences[100] = {1009, 1013, 1019, 1021, 1031, 1033, 1039, 1049, 1051, 1061, 1063, 1069, 1087, 1091, 1093, 1097, 1103, 1109, 1117, 1123, 1129, 1151, 1153, 1163, 1171, 1181, 1187, 1193, 1201, 1213, 1217, 1223, 1229, 1231, 1237, 1249, 1259, 1277, 1279, 1283, 1289, 1291, 1297, 1301, 1303, 1307, 1319, 1321, 1327, 1361, 1367, 1373, 1381, 1399, 1409, 1423, 1427, 1429, 1433, 1439, 1447, 1451, 1453, 1459, 1471, 1481, 1483, 1487, 1489, 1493, 1499, 1511, 1523, 1531, 1543, 1549, 1553, 1559, 1567, 1571, 1579, 1583, 1597, 1601, 1607, 1609, 1613, 1619, 1621, 1627, 1637, 1657, 1663, 1667, 1669, 1693, 1697, 1699, 1709, 1721};
 float phases[100] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313, 317, 331, 337, 347, 349, 353, 359, 367, 373, 379, 383, 389, 397, 401, 409, 419, 421, 431, 433, 439, 443, 449, 457, 461, 463, 467, 479, 487, 491, 499, 503, 509, 521, 523, 541};
-  
+*/
 
 // Somme des sinus à retrouver
-#define POLY(x) (601*sin(1009*x+6.28/2))+(599*sin(1013*x+6.28/3))+(593*sin(1019*x+6.28/5))+(587*sin(1021*x+6.28/7))+(577*sin(1031*x+6.28/11))+(571*sin(1033*x+6.28/13))+(569*sin(1039*x+6.28/17))+(563*sin(1049*x+6.28/19))+(557*sin(1051*x+6.28/23))+(547*sin(1061*x+6.28/29))+(541*sin(1063*x+6.28/31))+(523*sin(1069*x+6.28/37))+(521*sin(1087*x+6.28/41))+(509*sin(1091*x+6.28/43))+(503*sin(1093*x+6.28/47))+(499*sin(1097*x+6.28/53))+(491*sin(1103*x+6.28/59))+(487*sin(1109*x+6.28/61))+(479*sin(1117*x+6.28/67))+(467*sin(1123*x+6.28/71))+(463*sin(1129*x+6.28/73))+(461*sin(1151*x+6.28/79))+(457*sin(1153*x+6.28/83))+(449*sin(1163*x+6.28/89))+(443*sin(1171*x+6.28/97))+(439*sin(1181*x+6.28/101))+(433*sin(1187*x+6.28/103))+(431*sin(1193*x+6.28/107))+(421*sin(1201*x+6.28/109))+(419*sin(1213*x+6.28/113))+(409*sin(1217*x+6.28/127))+(401*sin(1223*x+6.28/131))+(397*sin(1229*x+6.28/137))+(389*sin(1231*x+6.28/139))+(383*sin(1237*x+6.28/149))+(379*sin(1249*x+6.28/151))+(373*sin(1259*x+6.28/157))+(367*sin(1277*x+6.28/163))+(359*sin(1279*x+6.28/167))+(353*sin(1283*x+6.28/173))+(349*sin(1289*x+6.28/179))+(347*sin(1291*x+6.28/181))+(337*sin(1297*x+6.28/191))+(331*sin(1301*x+6.28/193))+(317*sin(1303*x+6.28/197))+(313*sin(1307*x+6.28/199))+(311*sin(1319*x+6.28/211))+(307*sin(1321*x+6.28/223))+(293*sin(1327*x+6.28/227))+(283*sin(1361*x+6.28/229))+(281*sin(1367*x+6.28/233))+(277*sin(1373*x+6.28/239))+(271*sin(1381*x+6.28/241))+(269*sin(1399*x+6.28/251))+(263*sin(1409*x+6.28/257))+(257*sin(1423*x+6.28/263))+(251*sin(1427*x+6.28/269))+(241*sin(1429*x+6.28/271))+(239*sin(1433*x+6.28/277))+(233*sin(1439*x+6.28/281))+(229*sin(1447*x+6.28/283))+(227*sin(1451*x+6.28/293))+(223*sin(1453*x+6.28/307))+(211*sin(1459*x+6.28/311))+(199*sin(1471*x+6.28/313))+(197*sin(1481*x+6.28/317))+(193*sin(1483*x+6.28/331))+(191*sin(1487*x+6.28/337))+(181*sin(1489*x+6.28/347))+(179*sin(1493*x+6.28/349))+(173*sin(1499*x+6.28/353))+(167*sin(1511*x+6.28/359))+(163*sin(1523*x+6.28/367))+(157*sin(1531*x+6.28/373))+(151*sin(1543*x+6.28/379))+(149*sin(1549*x+6.28/383))+(139*sin(1553*x+6.28/389))+(137*sin(1559*x+6.28/397))+(131*sin(1567*x+6.28/401))+(127*sin(1571*x+6.28/409))+(113*sin(1579*x+6.28/419))+(109*sin(1583*x+6.28/421))+(107*sin(1597*x+6.28/431))+(103*sin(1601*x+6.28/433))+(101*sin(1607*x+6.28/439))+(97*sin(1609*x+6.28/443))+(89*sin(1613*x+6.28/449))+(83*sin(1619*x+6.28/457))+(79*sin(1621*x+6.28/461))+(73*sin(1627*x+6.28/463))+(71*sin(1637*x+6.28/467))+(67*sin(1657*x+6.28/479))+(61*sin(1663*x+6.28/487))+(59*sin(1667*x+6.28/491))+(53*sin(1669*x+6.28/499))+(47*sin(1693*x+6.28/503))+(43*sin(1697*x+6.28/509))+(41*sin(1699*x+6.28/521))+(37*sin(1709*x+6.28/523))+(31*sin(1721*x+6.28/541))
-
+//#define POLY(x) (601*sin(1009*x+6.28/2))+(599*sin(1013*x+6.28/3))+(593*sin(1019*x+6.28/5))+(587*sin(1021*x+6.28/7))+(577*sin(1031*x+6.28/11))+(571*sin(1033*x+6.28/13))+(569*sin(1039*x+6.28/17))+(563*sin(1049*x+6.28/19))+(557*sin(1051*x+6.28/23))+(547*sin(1061*x+6.28/29))+(541*sin(1063*x+6.28/31))+(523*sin(1069*x+6.28/37))+(521*sin(1087*x+6.28/41))+(509*sin(1091*x+6.28/43))+(503*sin(1093*x+6.28/47))+(499*sin(1097*x+6.28/53))+(491*sin(1103*x+6.28/59))+(487*sin(1109*x+6.28/61))+(479*sin(1117*x+6.28/67))+(467*sin(1123*x+6.28/71))+(463*sin(1129*x+6.28/73))+(461*sin(1151*x+6.28/79))+(457*sin(1153*x+6.28/83))+(449*sin(1163*x+6.28/89))+(443*sin(1171*x+6.28/97))+(439*sin(1181*x+6.28/101))+(433*sin(1187*x+6.28/103))+(431*sin(1193*x+6.28/107))+(421*sin(1201*x+6.28/109))+(419*sin(1213*x+6.28/113))+(409*sin(1217*x+6.28/127))+(401*sin(1223*x+6.28/131))+(397*sin(1229*x+6.28/137))+(389*sin(1231*x+6.28/139))+(383*sin(1237*x+6.28/149))+(379*sin(1249*x+6.28/151))+(373*sin(1259*x+6.28/157))+(367*sin(1277*x+6.28/163))+(359*sin(1279*x+6.28/167))+(353*sin(1283*x+6.28/173))+(349*sin(1289*x+6.28/179))+(347*sin(1291*x+6.28/181))+(337*sin(1297*x+6.28/191))+(331*sin(1301*x+6.28/193))+(317*sin(1303*x+6.28/197))+(313*sin(1307*x+6.28/199))+(311*sin(1319*x+6.28/211))+(307*sin(1321*x+6.28/223))+(293*sin(1327*x+6.28/227))+(283*sin(1361*x+6.28/229))+(281*sin(1367*x+6.28/233))+(277*sin(1373*x+6.28/239))+(271*sin(1381*x+6.28/241))+(269*sin(1399*x+6.28/251))+(263*sin(1409*x+6.28/257))+(257*sin(1423*x+6.28/263))+(251*sin(1427*x+6.28/269))+(241*sin(1429*x+6.28/271))+(239*sin(1433*x+6.28/277))+(233*sin(1439*x+6.28/281))+(229*sin(1447*x+6.28/283))+(227*sin(1451*x+6.28/293))+(223*sin(1453*x+6.28/307))+(211*sin(1459*x+6.28/311))+(199*sin(1471*x+6.28/313))+(197*sin(1481*x+6.28/317))+(193*sin(1483*x+6.28/331))+(191*sin(1487*x+6.28/337))+(181*sin(1489*x+6.28/347))+(179*sin(1493*x+6.28/349))+(173*sin(1499*x+6.28/353))+(167*sin(1511*x+6.28/359))+(163*sin(1523*x+6.28/367))+(157*sin(1531*x+6.28/373))+(151*sin(1543*x+6.28/379))+(149*sin(1549*x+6.28/383))+(139*sin(1553*x+6.28/389))+(137*sin(1559*x+6.28/397))+(131*sin(1567*x+6.28/401))+(127*sin(1571*x+6.28/409))+(113*sin(1579*x+6.28/419))+(109*sin(1583*x+6.28/421))+(107*sin(1597*x+6.28/431))+(103*sin(1601*x+6.28/433))+(101*sin(1607*x+6.28/439))+(97*sin(1609*x+6.28/443))+(89*sin(1613*x+6.28/449))+(83*sin(1619*x+6.28/457))+(79*sin(1621*x+6.28/461))+(73*sin(1627*x+6.28/463))+(71*sin(1637*x+6.28/467))+(67*sin(1657*x+6.28/479))+(61*sin(1663*x+6.28/487))+(59*sin(1667*x+6.28/491))+(53*sin(1669*x+6.28/499))+(47*sin(1693*x+6.28/503))+(43*sin(1697*x+6.28/509))+(41*sin(1699*x+6.28/521))+(37*sin(1709*x+6.28/523))+(31*sin(1721*x+6.28/541))
+#define POLY(x) 601*sin(1009*x+6.28/2)
 
 // Définitions pour données d'entrainement
 #define NO_FITNESS_CASES 8192
@@ -60,15 +62,6 @@ float phases[100] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53,
 \end
 
 \User functions:
-
-/**
-
-   The "generateData()" function generates NO_FITNESS_CASES fitness cases,
-   from the polynome POLY(X) with X randomly picked between [-10,10[
-
-   @inputs: address of the inputs array. (array will be allocated here)
-   @outputs: adddress of the outputs array. (array will be allocated here)
- */
 
 /**
 * Génère des données d'entrainement pour un signal composé de NO_FITNESS_CASES points.
@@ -109,17 +102,17 @@ void free_data(){
 \Before everything else function:
   
   //Créer la somme de sinus
-  for( int i=0 ; i<100 ; i++ ){
+  /*for( int i=0 ; i<100 ; i++ ){
     sum_sinus[i].frequence = frequences[i];
     sum_sinus[i].amplitude = amplitudes[i];
     sum_sinus[i].phase = phases[i];
-    sum_sinus[i].afficher();
-  }
+    //sum_sinus[i].afficher();
+  }*/
   generateData(&inputs,&outputs);
 \end
 
 \After everything else function:
-  //std::cout << toString(((IndividualImpl*)EA->population->Best)->root) << std::endl;
+  std::cout << toString(((IndividualImpl*)EA->population->Best)->root) << std::endl;
   free_data();
 \end
 
@@ -191,18 +184,18 @@ LDFLAGS+=
 \end
 
 \Default run parameters :        
-  Number of generations : 1   	          // NB_GEN
+  Number of generations : 30   	          // NB_GEN
   Time limit: 0 			                    // In seconds, 0 to deactivate
-  Population size : 500		                // POP_SIZE
-  Offspring size : 500                   // can be a percentage such as 40% 
-  Mutation probability : 0.2              // Probability to call the mutation function
+  Population size : 10000		                // POP_SIZE
+  Offspring size : 110%                   // can be a percentage such as 40% 
+  Mutation probability : 0.2             // Probability to call the mutation function
   Crossover probability : 1             // Probability to call the crossover function
   Evaluator goal : minimise               // or Maximise
   Selection operator: Tournament 7        // to select parents
   Surviving parents: 100%                 // to select breeders
   Surviving offspring: 100%               // to select among offspring for next generation
-  Reduce parents operator: Tournament 2   // how to select the breeders
-  Reduce offspring operator: Tournament 2 // how to select the offspring that will compete to access the next generation
+  Reduce parents operator: Tournament 1   // how to select the breeders
+  Reduce offspring operator: Tournament 3 // how to select the offspring that will compete to access the next generation
   Final reduce operator: Tournament 7     // to select the individuals composing the next generation
 
   Elitism: Strong			                    // Strong = from parents pop, Weak = from parents + children
@@ -224,7 +217,7 @@ LDFLAGS+=
   max init tree depth : 4
   min init tree depth : 2
 
-  max tree depth : 8
+  max tree depth : 6
 
   size of prog buffer : 200000000
 \end

@@ -21,3 +21,5 @@ print(sine_codes[0], end="\n")
 for sine_code in sine_codes[1:]:
     print(f"{sine_code}", end="\n")
 print()
+
+
