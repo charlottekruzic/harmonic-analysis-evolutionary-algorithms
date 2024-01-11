@@ -1,4 +1,0 @@
-A faire :
-Définir sinus positif et négatif
-Fonction soustraire un sinus
-Valeur de la somme
