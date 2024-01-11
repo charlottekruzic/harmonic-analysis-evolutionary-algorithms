@@ -5,8 +5,11 @@ __________________________________________________________*/
 
 \User declarations :
 #define SIZE 8192
-#define NB_SIN 100    // passer le nombre de sinus à 6
+#define NB_SIN 1    // passer le nombre de sinus à 6
 #define X_MAX 7.0
+
+#define MAX(x,y) ((x)>(y)?(x):(y))
+#define MIN(x,y) ((x)<(y)?(x):(y))
 
 float donnees[SIZE][2];
 \end
@@ -32,7 +35,7 @@ for (int d=0;d<SIZE;d++){
 printf("On cherche : (601*sin(1009*x+6.28/2))\n");
 
 printf("On trouve : \n");
-for(int j=0;j</*NB_SIN*/1;j++){
+for(int j=0;j<NB_SIN;j++){
   printf("%f*sin(%f*x+6.28/%f)+",bBest->s[j*3+0],bBest->s[j*3+1],bBest->s[j*3+2]);
 }
 printf("\n");
@@ -58,9 +61,10 @@ GenomeClass {
 
 \GenomeClass::initialiser : // "initializer" is also accepted
   for(int i=0; i<NB_SIN; i++ ) {
-    Genome.s[i*3+0] = random(31.0,601.0);
-    Genome.s[i*3+1] = random(1009.0,1721.0);
-    Genome.s[i*3+2] = random(2.0,541.0);
+    Genome.s[i*3+0] = random(31.0,602.0);
+    Genome.s[i*3+1] = random(1009.0,1722.0);
+    Genome.s[i*3+2] = random(2.0,542.0);
+    //printf("%d : %f\n",i,Genome.s[i*3+2]);
   }
 \end
     
@@ -72,11 +76,30 @@ GenomeClass {
      child.s[i*3+1]=parent2.s[i*3+1];
      child.s[i*3+2]=parent2.s[i*3+2];
   }
+  
 \end
 
 \GenomeClass::mutator :
-  for (int i=0;i<NB_SIN*3;i++)
-    if (tossCoin(.1)) Genome.s[i]+=random(-1.0,1.0);
+  for (int i=0;i<NB_SIN;i++){
+
+    if (tossCoin(.1)){
+      Genome.s[i*3+0]+=random(-1.0,1.0);
+      //Genome.s[i*3+0] = MIN(601.0,Genome.s[i*3+0]); 
+      //Genome.s[i*3+0] = MAX(31.0,Genome.s[i*3+0]); 
+    }
+    if (tossCoin(.1)){
+		  Genome.s[i*3+1]+=random(-1.0,1.0);
+      //Genome.s[i*3+1] = MIN(1721.0,Genome.s[i*3+1]); 
+      //Genome.s[i*3+1] = MAX(1009.0,Genome.s[i*3+1]);
+    }
+    if (tossCoin(.1)){
+		  Genome.s[i*3+2]+=random(-1.0,1.0);
+      //Genome.s[i*3+2] = MIN(541.0,Genome.s[i*3+2]); 
+      //Genome.s[i*3+2] = MAX(2.0,Genome.s[i*3+2]);
+    }
+
+  }
+    
 \end
 
 \GenomeClass::evaluator : // Returns the score
@@ -84,8 +107,8 @@ GenomeClass {
   for (int i=0;i<SIZE;i++){
     float x=donnees[i][0];
     float y_somme=0;
-    for (int j=0;j<1;j++){
-      y_somme+=Genome.s[j*3+0]*sin(Genome.s[j*3+1]*x+6.28*Genome.s[j*3+2]);
+    for (int j=0;j<NB_SIN;j++){
+      y_somme+=Genome.s[j*3+0]*sin(Genome.s[j*3+1]*x+6.28/Genome.s[j*3+2]);
     }
     fScore+=fabs(y_somme-donnees[i][1])*X_MAX/(float)SIZE;
   }
@@ -97,11 +120,11 @@ GenomeClass {
 \end
 
 \Default run parameters :        // Please let the parameters appear in this order
-  Number of generations : 1000   	// NB_GEN
+  Number of generations : 150   	// NB_GEN
   Time limit: 0 			          // In seconds, 0 to deactivate
-  Population size : 1000			    //POP_SIZE
-  Offspring size : 40% // 50%
-  Mutation probability : 1       // MUT_PROB
+  Population size : 800			    //POP_SIZE
+  Offspring size : 800 // 50%
+  Mutation probability : 0.3       // MUT_PROB
   Crossover probability : 1      // XOVER_PROB
   Evaluator goal : minimise      // Maximise
   Selection operator: Tournament 2
