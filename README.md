@@ -1,4 +1,5 @@
-# Harmonies Unveiled: Harmonic analysis by artificial evolution
+# Harmonies Unveiled
+[![License: MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg)](https://opensource.org/licenses/MIT)
 
 ## 🔎 Overview
 This project explores an alternative approach to Fourier transform-based harmonic analysis using artificial evolution algorithms. The goal is to iteratively determine the parameters (amplitude, frequency, and phase) of sinusoids that compose a complex signal.
